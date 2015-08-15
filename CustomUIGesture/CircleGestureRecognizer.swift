@@ -73,5 +73,13 @@ class CircleGestureRecognizer: UIGestureRecognizer {
       
     }
   }
+  
+  override func reset() {
+    super.reset()
+    touchedPoints.removeAll(keepCapacity: true)
+    path = CGPathCreateMutable()
+    isCircle = false
+    state = .Possible
+  }
    
 }
