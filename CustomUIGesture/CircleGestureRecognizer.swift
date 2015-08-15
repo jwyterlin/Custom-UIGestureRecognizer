@@ -14,6 +14,9 @@ class CircleGestureRecognizer: UIGestureRecognizer {
   
   override func touchesBegan(touches: Set<NSObject>!, withEvent event: UIEvent!) {
     super.touchesBegan(touches, withEvent: event)
+    if touches.count != 1 {
+      state = .Failed
+    }
     state = .Began
   }
   
