@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0BCE6C1B7FD63000E9402F /* CircleGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0BCE6B1B7FD63000E9402F /* CircleGestureRecognizer.swift */; };
 		7B9B63661B79922B00CD5446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B63651B79922B00CD5446 /* AppDelegate.swift */; };
 		7B9B636D1B79923E00CD5446 /* CircleDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B63671B79923E00CD5446 /* CircleDrawView.swift */; };
 		7B9B636E1B79923E00CD5446 /* CircleFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B63681B79923E00CD5446 /* CircleFit.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		1ABC80931AC96EF900F15569 /* CustomUIGesture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomUIGesture.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B0BCE6B1B7FD63000E9402F /* CircleGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleGestureRecognizer.swift; path = CustomUIGesture/CircleGestureRecognizer.swift; sourceTree = SOURCE_ROOT; };
 		7B9B63651B79922B00CD5446 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CustomUIGesture/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		7B9B63671B79923E00CD5446 /* CircleDrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleDrawView.swift; path = CustomUIGesture/CircleDrawView.swift; sourceTree = SOURCE_ROOT; };
 		7B9B63681B79923E00CD5446 /* CircleFit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleFit.swift; path = CustomUIGesture/CircleFit.swift; sourceTree = SOURCE_ROOT; };
@@ -71,13 +73,14 @@
 				7B9B63651B79922B00CD5446 /* AppDelegate.swift */,
 				7B9B63671B79923E00CD5446 /* CircleDrawView.swift */,
 				7B9B63681B79923E00CD5446 /* CircleFit.swift */,
+				7B0BCE6B1B7FD63000E9402F /* CircleGestureRecognizer.swift */,
 				7B9B63691B79923E00CD5446 /* GameOverViewController.swift */,
 				7B9B636A1B79923E00CD5446 /* GameViewController.swift */,
+				7B9B63731B79927E00CD5446 /* Images.xcassets */,
+				7B9B637B1B79937100CD5446 /* LaunchScreen.xib */,
+				7B9B63781B79936700CD5446 /* Main.storyboard */,
 				7B9B636B1B79923E00CD5446 /* MatchingGame.swift */,
 				7B9B636C1B79923E00CD5446 /* RoundedImageView.swift */,
-				7B9B63781B79936700CD5446 /* Main.storyboard */,
-				7B9B637B1B79937100CD5446 /* LaunchScreen.xib */,
-				7B9B63731B79927E00CD5446 /* Images.xcassets */,
 				1ABC80961AC96EF900F15569 /* Supporting Files */,
 			);
 			name = CustomUIGesture;
@@ -167,6 +170,7 @@
 			files = (
 				7B9B63661B79922B00CD5446 /* AppDelegate.swift in Sources */,
 				7B9B63711B79923E00CD5446 /* MatchingGame.swift in Sources */,
+				7B0BCE6C1B7FD63000E9402F /* CircleGestureRecognizer.swift in Sources */,
 				7B9B636D1B79923E00CD5446 /* CircleDrawView.swift in Sources */,
 				7B9B636F1B79923E00CD5446 /* GameOverViewController.swift in Sources */,
 				7B9B636E1B79923E00CD5446 /* CircleFit.swift in Sources */,

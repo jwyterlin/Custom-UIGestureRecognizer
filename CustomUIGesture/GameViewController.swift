@@ -47,6 +47,8 @@ class GameViewController: UIViewController {
 
   var goToNextTimer: NSTimer?
 
+  var circleRecognizer: CircleGestureRecognizer!
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -54,6 +56,9 @@ class GameViewController: UIViewController {
     imageViews = [image1, image2, image3, image4]
 
     // create and add the circle recognizer here
+    circleRecognizer = CircleGestureRecognizer(target: self, action: "circled:")
+    view.addGestureRecognizer(circleRecognizer)
+    
   }
 
   override func viewWillAppear(animated: Bool) {
