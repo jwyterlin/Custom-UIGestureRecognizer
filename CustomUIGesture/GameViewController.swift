@@ -58,6 +58,8 @@ class GameViewController: UIViewController {
     // create and add the circle recognizer here
     circleRecognizer = CircleGestureRecognizer(target: self, action: "circled:")
     view.addGestureRecognizer(circleRecognizer)
+
+    circleRecognizer.delegate = self
     
   }
 
@@ -170,4 +172,11 @@ class GameViewController: UIViewController {
     
   }
 
+}
+
+extension GameViewController: UIGestureRecognizerDelegate {
+  func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+    // allow button press
+    return !(touch.view is UIButton)
+  }
 }

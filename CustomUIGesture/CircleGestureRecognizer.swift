@@ -79,6 +79,11 @@ class CircleGestureRecognizer: UIGestureRecognizer {
     }
   }
   
+  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    super.touchesCancelled(touches, withEvent: event)
+    state = .Cancelled // forward the cancel state
+  }
+  
   override func reset() {
     super.reset()
     touchedPoints.removeAll(keepCapacity: true)
