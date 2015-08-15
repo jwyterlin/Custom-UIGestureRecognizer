@@ -152,8 +152,7 @@ class GameViewController: UIViewController {
   // MARK: - Circle Stuff
   func circled(c: CircleGestureRecognizer) {
     if c.state == .Ended {
-      let center = c.locationInView(view)
-      findCircledView(center)
+      findCircledView(c.fitResult.center)
     }
   }
 
