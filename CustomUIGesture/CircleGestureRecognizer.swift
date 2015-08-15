@@ -42,7 +42,9 @@ class CircleGestureRecognizer: UIGestureRecognizer {
     // make sure there are no points in the middle of the circle
     let hasInside = anyPointsInTheMiddle()
     
-    isCircle = fitResult.error <= tolerance && !hasInside
+    let percentOverlap = calculateBoundingOverlap()
+    isCircle = fitResult.error <= tolerance && !hasInside && percentOverlap > (1-tolerance)
+    
     state = isCircle ? .Ended : .Failed
     
   }
@@ -115,6 +117,31 @@ class CircleGestureRecognizer: UIGestureRecognizer {
     
     return hasInside
     
+  }
+  
+  private func calculateBoundingOverlap() -> CGFloat {
+    
+    // Find the bounding box of the circle fit and the user’s path. 
+    // This uses CGPathGetBoundingBox to handle the tricky math, 
+    // since the touch points were also captured as part of the CGMutablePath path variable.
+    let fitBoundingBox = CGRect(
+      x: fitResult.center.x - fitResult.radius,
+      y: fitResult.center.y - fitResult.radius,
+      width: 2 * fitResult.radius,
+      height: 2 * fitResult.radius)
+    let pathBoundingBox = CGPathGetBoundingBox(path)
+    
+    // Calculate the rectangle where the two paths overlap using the rectByIntersecting method on CGRect
+    let overlapRect = fitBoundingBox.rectByIntersecting(pathBoundingBox)
+    
+    // Figure out what percentage the two bounding boxes overlap as a percentage of area. 
+    // This percentage will be in the 80%-100% for a good circle gesture. 
+    // In the case of the short arc shape, it will be very, very tiny!
+    let overlapRectArea = overlapRect.width * overlapRect.height
+    let circleBoxArea = fitBoundingBox.height * fitBoundingBox.width
+    
+    let percentOverlap = overlapRectArea / circleBoxArea
+    return percentOverlap
   }
    
 }
