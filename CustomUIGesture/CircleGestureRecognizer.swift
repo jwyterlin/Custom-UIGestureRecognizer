@@ -12,6 +12,7 @@ import UIKit.UIGestureRecognizerSubclass
 
 class CircleGestureRecognizer: UIGestureRecognizer {
   
+  var path = CGPathCreateMutable() // running CGPath - helps with drawing
   var fitResult = CircleResult() // information about how circle-like is the path
   var tolerance: CGFloat = 0.2 // circle wiggle room
   var isCircle = false
@@ -24,6 +25,12 @@ class CircleGestureRecognizer: UIGestureRecognizer {
       state = .Failed
     }
     state = .Began
+    
+    let window = view?.window
+    if let touches = touches as? Set<UITouch>, loc = touches.first?.locationInView(window) {
+      CGPathMoveToPoint(path, nil, loc.x, loc.y) // start the path
+    }
+    
   }
   
   override func touchesEnded(touches: Set<NSObject>!, withEvent event: UIEvent!) {
@@ -58,6 +65,9 @@ class CircleGestureRecognizer: UIGestureRecognizer {
       
       // Add the points to the array.
       touchedPoints.append(loc)
+      
+      CGPathAddLineToPoint(path, nil, loc.x, loc.y)
+      
       // Update the state to .Changed. This has the side effect of calling the target action as well.
       state = .Changed
       
