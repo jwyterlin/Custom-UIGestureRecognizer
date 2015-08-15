@@ -94,6 +94,9 @@ class GameViewController: UIViewController {
     for (index, image) in enumerate(images) {
       imageViews[index].image = image
     }
+    
+    circleRecognizer.enabled = true
+    
   }
 
   func goToGameOver() {
@@ -137,6 +140,9 @@ class GameViewController: UIViewController {
     // stop any drawing and go to the next round after a timeout
     goToNextTimer?.invalidate()
     goToNextTimer = NSTimer.scheduledTimerWithTimeInterval(afterGuessTimeout, target: self, selector: "startNewSet:", userInfo: nil, repeats: false)
+    
+    circleRecognizer.enabled = false
+    
   }
 
   func findCircledView(center: CGPoint) {
@@ -160,6 +166,7 @@ class GameViewController: UIViewController {
     
     if c.state == .Began {
       circlerDrawer.clear()
+      goToNextTimer?.invalidate()
     }
     
     if c.state == .Changed {
@@ -168,8 +175,13 @@ class GameViewController: UIViewController {
     
     if c.state == .Ended || c.state == .Failed || c.state == .Cancelled {
       circlerDrawer.updateFit(c.fitResult, madeCircle: c.isCircle)
+      goToNextTimer = NSTimer.scheduledTimerWithTimeInterval(afterGuessTimeout, target: self, selector: "timerFired:", userInfo: nil, repeats: false)
     }
     
+  }
+
+  func timerFired(timer: NSTimer) {
+    circlerDrawer.clear()
   }
 
 }
