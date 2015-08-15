@@ -33,7 +33,7 @@ class CircleDrawView: UIView {
   private var fitResult: CircleResult?
   private var isCircle = false
 
-  var drawDebug = true // set to true show additional information about the fit
+  var drawDebug = false // set to true show additional information about the fit
 
   func updateFit(fit: CircleResult?, madeCircle: Bool) {
     fitResult = fit

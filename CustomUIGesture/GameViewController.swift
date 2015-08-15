@@ -22,7 +22,7 @@
 
 import UIKit
 
-let afterGuessTimeout: NSTimeInterval = 2 // seconds
+let afterGuessTimeout: NSTimeInterval = 1 // seconds
 
 // border colors for image views
 let successColor = UIColor(red:  80.0/255.0, green: 192.0/255.0, blue: 202.0/255.0, alpha: 1.0)
