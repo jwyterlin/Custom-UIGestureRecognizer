@@ -164,6 +164,10 @@ class GameViewController: UIViewController {
       circlerDrawer.updatePath(c.path)
     }
     
+    if c.state == .Ended || c.state == .Failed || c.state == .Cancelled {
+      circlerDrawer.updateFit(c.fitResult, madeCircle: c.isCircle)
+    }
+    
   }
 
 }

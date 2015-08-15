@@ -39,7 +39,10 @@ class CircleGestureRecognizer: UIGestureRecognizer {
     // now that the user has stopped touching, figure out if the path was a circle
     fitResult = fitCircle(touchedPoints)
     
-    isCircle = fitResult.error <= tolerance
+    // make sure there are no points in the middle of the circle
+    let hasInside = anyPointsInTheMiddle()
+    
+    isCircle = fitResult.error <= tolerance && !hasInside
     state = isCircle ? .Ended : .Failed
     
   }
@@ -80,6 +83,38 @@ class CircleGestureRecognizer: UIGestureRecognizer {
     path = CGPathCreateMutable()
     isCircle = false
     state = .Possible
+  }
+  
+  private func anyPointsInTheMiddle() -> Bool {
+
+    // Calculates a smaller exclusion zone. 
+    // The tolerance variable will provide enough space for a reasonable, but messy circle, 
+    // but still have enough room to exclude any obviously non-circle shapes with points in the middle.
+    let fitInnerRadius = fitResult.radius / sqrt(2) * tolerance
+
+    // To simplify the amount of code required, this constructs a smaller square centered on the circle.
+    let innerBox = CGRect(
+      x: fitResult.center.x - fitInnerRadius,
+      y: fitResult.center.y - fitInnerRadius,
+      width: 2 * fitInnerRadius,
+      height: 2 * fitInnerRadius)
+    
+    // This loops over the points and checks if the point is contained within innerBox.
+    var hasInside = false
+    
+    for point in touchedPoints {
+      
+      if innerBox.contains(point) {
+      
+        hasInside = true
+        break
+        
+      }
+      
+    }
+    
+    return hasInside
+    
   }
    
 }
